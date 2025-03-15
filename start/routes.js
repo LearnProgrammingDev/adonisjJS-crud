@@ -19,5 +19,10 @@ const Route = use("Route");
 Route.on("/").render("welcome");
 Route.get("/posts", "PostController.index").as("posts.index"); //nampilin data
 
+// route nambah data dan create ke database
 Route.get("/posts/create", "PostController.create").as("posts.create");
 Route.post("/posts/store", "PostController.store").as("posts.store");
+
+// route ubah data dan update ke database
+Route.get("/posts/edit/:id", "PostController.edit").as("posts.edit");
+Route.post("/posts/update/:id", "PostController.update").as("posts.update");

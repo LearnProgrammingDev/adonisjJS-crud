@@ -8,7 +8,7 @@ class PostController {
     return view.render("posts.index", { posts: posts.rows });
   }
 
-  //nambah data
+  //nambah data dan create ke database
   create({ request, response, view }) {
     return view.render("posts.create");
   }
@@ -21,6 +21,26 @@ class PostController {
     await post.save();
 
     session.flash({ notification: "Data Berhasil Disimpan!" });
+    return response.route("posts.index");
+  }
+
+  //   ubah data dan update data ke database
+  async edit({ request, response, view, params }) {
+    const id = params.id;
+    const post = await Post.find(id);
+
+    return view.render("posts.edit", { post: post });
+  }
+
+  async update({ request, response, view, params, session }) {
+    const id = params.id;
+    const post = await Post.find(id);
+
+    post.title = request.input("title");
+    post.content = request.input("content");
+    await post.save();
+
+    session.flash({ notification: "Data Berhasil Diupdate!" });
     return response.route("posts.index");
   }
 }
