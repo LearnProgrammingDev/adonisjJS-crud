@@ -26,3 +26,6 @@ Route.post("/posts/store", "PostController.store").as("posts.store");
 // route ubah data dan update ke database
 Route.get("/posts/edit/:id", "PostController.edit").as("posts.edit");
 Route.post("/posts/update/:id", "PostController.update").as("posts.update");
+
+// route untuk delete data
+Route.get("/posts/delete/:id", "PostController.delete").as("posts.delete");
