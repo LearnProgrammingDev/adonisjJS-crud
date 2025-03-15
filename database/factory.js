@@ -1,4 +1,6 @@
-'use strict'
+"use strict";
+
+const Factory = require("@adonisjs/lucid/src/Factory");
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,9 @@
 //     username: faker.username()
 //   }
 // })
+Factory.blueprint("App/Models/Post", (faker) => {
+  return {
+    title: faker.sentence(),
+    content: faker.paragraph(),
+  };
+});
